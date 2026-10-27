@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Live weather dashboard with current conditions and a five-day forecast.">
+  <title>SkyCast | Live Weather Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="SkyCast home">
+        <span class="brand-icon" aria-hidden="true">☼</span>
+        <span>SkyCast</span>
+      </a>
+      <span class="live-badge"><span class="live-dot"></span> LIVE WEATHER</span>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">YOUR WEATHER, AT A GLANCE</p>
+        <h1>Find your <span>clear sky.</span></h1>
+        <p class="intro">Real-time conditions and the next five days, wherever you are.</p>
+
+        <form id="search-form" class="search-form" autocomplete="off">
+          <label class="sr-only" for="city-input">Search city</label>
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="city-input" name="city" type="text" maxlength="80"
+                 placeholder="Search a city, e.g. New Delhi" aria-describedby="status"
+                 autocomplete="off">
+          <button id="search-button" type="submit">Search <span aria-hidden="true">→</span></button>
+        </form>
+        <p id="status" class="status" role="status" aria-live="polite">Search for a city to see its weather.</p>
+        <div class="quick-cities" aria-label="Popular cities">
+          <span>Try:</span>
+          <button type="button" class="city-chip" data-city="New Delhi">New Delhi</button>
+          <button type="button" class="city-chip" data-city="Mumbai">Mumbai</button>
+          <button type="button" class="city-chip" data-city="London">London</button>
+          <button type="button" class="city-chip" data-city="Tokyo">Tokyo</button>
+        </div>
+      </section>
+
+      <section id="weather-content" class="weather-content" hidden>
+        <article class="current-card">
+          <div class="current-main">
+            <div>
+              <p class="card-kicker">CURRENT WEATHER</p>
+              <h2 id="location-name">—</h2>
+              <p id="current-date" class="muted">—</p>
+              <p id="weather-description" class="condition">—</p>
+            </div>
+            <div id="current-icon" class="weather-icon" aria-hidden="true">☀️</div>
+          </div>
+          <div class="temperature-row">
+            <p id="current-temperature" class="temperature">--°</p>
+            <p class="feels-label">Current<br>temperature</p>
+          </div>
+          <div class="current-details">
+            <div class="detail-tile"><span class="detail-icon">↗</span><div><span class="detail-label">Wind speed</span><strong id="wind-speed">—</strong></div></div>
+            <div class="detail-tile"><span class="detail-icon">◌</span><div><span class="detail-label">Humidity</span><strong id="humidity">—</strong></div></div>
+            <div class="detail-tile"><span class="detail-icon">⌁</span><div><span class="detail-label">Feels like</span><strong id="feels-like">—</strong></div></div>
+          </div>
+        </article>
+
+        <section class="forecast-section">
+          <div class="section-heading">
+            <div><p class="card-kicker">PLAN AHEAD</p><h2>5-day forecast</h2></div>
+            <span class="forecast-note">Daily outlook</span>
+          </div>
+          <div id="forecast-grid" class="forecast-grid"></div>
+        </section>
+        <p class="data-credit">Weather data provided by Open-Meteo · Temperatures in °C</p>
+      </section>
+    </main>
+
+    <footer><span>SkyCast Weather</span><span>Made for curious minds <span aria-hidden="true">✦</span></span></footer>
+  </div>
+  <div id="loading-overlay" class="loading-overlay" hidden>
+    <div class="spinner" aria-hidden="true"></div>
+    <p>Checking the skies…</p>
+  </div>
+</body>
+</html>
